@@ -35,7 +35,7 @@ li {
 .main-container {
   display: grid;
   gap: 20px;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit  , minmax(300px, 1fr));
 }
 
 .project-container {
@@ -50,6 +50,7 @@ li {
   padding: 1rem 2.75rem;
 }
 
+
 .project-container:hover {
   background-color: #f3f1e5da;
 }
@@ -62,9 +63,9 @@ li {
 }
 
 .main-selector {
-  border: thick double white;
+  border-bottom: thick double white;
   display: grid;
-  gap: 0;
+  row-gap: .5rem;
   grid-column: 1 / -1;
   grid-template-columns: repeat(5, 1fr);
   padding: 0;
@@ -73,9 +74,15 @@ li {
 .selector {
   background-color: #44669980;
   border: 2px double white;
+  border-top-left-radius: 25%;
+  border-top-right-radius: 25%;
   color: white;
   font-size: 1.25rem;
-  margin: .25rem;
-  padding: .5rem;
+  padding: .5rem; 
   text-transform: capitalize;
+  z-index: 1;
+}
+
+.selector:hover {
+  background-color: #446699df;
 }
