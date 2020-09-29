@@ -1,3 +1,7 @@
+:root {
+  --priority: 1;
+}
+
 html {
   background-image: url(images/notebook2.jpg);
   background-position: center;
@@ -8,6 +12,7 @@ html {
 
 h2, h3, h4, p {
   margin: 0;
+  white-space: nowrap;
 }
 
 *,
@@ -32,36 +37,32 @@ li {
   font-size: 2.5rem;
 }
 
-.main-container {
+/* Container for project items that holds the todo items. */
+.project-container {
+  align-content: space-between;
   display: grid;
-  gap: 20px;
-  grid-template-columns: repeat(auto-fit  , minmax(300px, 1fr));
+  gap: 10px;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  justify-content: space-between;
 }
 
-.project-container {
-  align-content: start;
+/* Styling for the actual todo items. */
+.todo-container {
   background-blend-mode: multiply;
   background-color: rgb(243, 236, 248);
   border: 2px solid #aafa;
   border-radius: 5px;
-  display: grid;
+  margin: 2rem;
   min-height: 200px;
   opacity: .9;
-  /* padding: 1rem 2.75rem; */
+  padding: 1.25rem;
+  transition: .5s;
 }
 
-.todo-container {
-  /* align-content: start; */
-  /* background-color: rgb(243, 236, 248); */
-  /* display: grid; */
-  min-height: 200px;
-  opacity: .9;
-  padding: 1rem 2.75rem;
-}
-
-.project-container:hover {
+.todo-container:hover {
   background-color: #e9e8f1dd;
   transition: .5s;
+  transform: scale(1.05);
 }
 
 .todo-header {
@@ -71,7 +72,14 @@ li {
   text-transform: capitalize;
 }
 
-.main-selector {
+/* Styling for tabs at top to select project */
+.tab-container {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(auto-fit , minmax(300px, 1fr));
+}
+
+.tab-selector {
   border-bottom: thick double white;
   display: grid;
   row-gap: .5rem;
@@ -80,7 +88,7 @@ li {
   padding: 0;
 }
 
-.selector{
+.selector {
   background-image: linear-gradient(90deg, #44669988 75% , #66766988);
   border: 2px double white;
   border-top-left-radius: 25%;
@@ -89,33 +97,22 @@ li {
   font-size: 1.25rem;
   padding: .5rem; 
   text-transform: capitalize;
+  transition: .5s;
   z-index: 1;
 }
 
-.selector:hover, .selected {
+.selector:hover {
   background-image: linear-gradient(90deg, #333399dd 75% , #446699ff);
   cursor: pointer;
 } 
 
-#add-button:hover {
-  background-color: #156904dd;
+.selected {
+  background-image: linear-gradient(90deg, #333399dd 75% , #446699ff);
   cursor: pointer;
-}
+} 
+/*  */
 
-#add-button {
-  background-color: #3ae41888;
-  border: 2px double white;
-  border-top-left-radius: 25%;
-  border-top-right-radius: 25%;
-  color: white;
-  font-size: 1.25rem;
-  grid-column: span 1 / -1;
-  justify-self: flex-end;
-  padding: .5rem; 
-  text-align: center;
-  text-transform: capitalize;
-}
-
+/* Stying for overlay when item pops out */
 .popout-overlay {
   align-items: center;
   background: rgba(48, 4, 73, 0.25);
@@ -138,6 +135,27 @@ li {
   background-color: rgb(243, 236, 248);
   display: grid;
   justify-content: center;
+}
+
+/* Buttons */
+
+#add-button:hover {
+  background-color: #156904dd;
+  cursor: pointer;
+}
+
+#add-button {
+  background-color: #3ae41888;
+  border: 2px double white;
+  border-top-left-radius: 25%;
+  border-top-right-radius: 25%;
+  color: white;
+  font-size: 1.25rem;
+  grid-column: span 1 / -1;
+  justify-self: flex-end;
+  padding: .5rem; 
+  text-align: center;
+  text-transform: capitalize;
 }
 
 .close-button {
