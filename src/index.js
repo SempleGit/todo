@@ -1,3 +1,5 @@
+import { addTaskForm } from "./addTask.js"
+
 const tabSelector = document.querySelector(".tab-selector");
 
 tabSelector.addEventListener("click", (e) => {
@@ -16,13 +18,10 @@ tabSelector.addEventListener("click", (e) => {
 
 const addButton = document.getElementById("add-button");
 const popoutOverlay = document.querySelector(".popout-overlay");
-const closeButton = document.querySelector(".close-button");
 
-closeButton.addEventListener("click", () => {
-  popoutOverlay.classList.remove("open");
-});
 
-addButton.addEventListener("click", e => {
+addButton.addEventListener("click", () => {
   popoutOverlay.classList.add("open");
+  addTaskForm();
   console.log("add button!");
 });
