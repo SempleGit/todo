@@ -24,19 +24,31 @@ function addTaskForm() {
                 </div>`
 
   popout.insertAdjacentHTML("afterbegin", html);
-  closeButton();
+  intializeButtons();
 }
 
-const closeButton = () => {
-  const closeButton = document.querySelector(".close-button");
-  closeButton.addEventListener("click", closeOverlay);
-}
+const intializeButtons = () => {
+    const submitButton = (() => {
+      const submitButton = document.querySelector(".submit-button");
+      submitButton.addEventListener("click", submit);
+    })();
+    
+    const closeButton = (() => {
+      const closeButton = document.querySelector(".close-button");
+      closeButton.addEventListener("click", closeOverlay);
+    })();
+};
 
-function closeOverlay() {
+
+const closeOverlay = e => {
   const popoutOverlay = document.querySelector(".popout-overlay");
   popoutOverlay.classList.remove("open");
   // replace with while loop
-  this.closest(".container").innerHTML = "";
+  e.target.closest(".container").innerHTML = "";
+}
+
+function submit() {
+  console.log("submit");
 }
 
 
