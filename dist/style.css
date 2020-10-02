@@ -74,17 +74,17 @@ li {
 
 /* Styling for tabs at top to select project */
 .tab-container {
+  border-bottom: thick double white;
   display: grid;
-  gap: 20px;
-  grid-template-columns: repeat(auto-fit , minmax(300px, 1fr));
+  gap: 10px;
+  grid-template-columns: 1fr auto;
 }
 
 .tab-selector {
-  border-bottom: thick double white;
   display: grid;
   row-gap: .5rem;
-  grid-column: 1 / -1;
-  grid-template-columns: repeat(5, 1fr);
+  /* grid-column: 1 / -2; */
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
   padding: 0;
 }
 
@@ -160,13 +160,14 @@ input, textarea {
 }
 
 #add-button {
+  align-self: flex-end;
   background-color: #3ae41888;
   border: 2px double white;
   border-top-left-radius: 25%;
   border-top-right-radius: 25%;
   color: white;
   font-size: 1.25rem;
-  grid-column: span 1 / -1;
+  /* grid-column: span 1 / -1; */
   justify-self: flex-end;
   padding: .5rem; 
   text-align: center;
@@ -197,5 +198,6 @@ input, textarea {
   font-size: .9rem;
   font-weight: bold;
   height: 2rem;
+  /* justify-self: start; */
   width: 4rem;
 }

@@ -17,10 +17,10 @@ tabSelector.addEventListener("click", (e) => {
 });
 
 const addButton = document.getElementById("add-button");
-const popoutOverlay = document.querySelector(".popout-overlay");
 
 
 addButton.addEventListener("click", () => {
+  const popoutOverlay = document.querySelector(".popout-overlay");
   popoutOverlay.classList.add("open");
   addTaskForm();
   console.log("add button!");

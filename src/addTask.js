@@ -2,13 +2,7 @@ export { addTaskForm }
 
 function addTaskForm() {
   const popout = document.querySelector(".popout-form");
-  
-  // Creating all the html elements and attaching classes and attributes.
-  const addTask = document.createElement('div');
-  addTask.classList.add("add-task");
-
-  const title = document.createElement('label');
-  title.setAttribute("for", "title");
+  // Creating the html to open the add task form.
   
   const html =  `<div class="add-task">
                   <label for="title">Title
@@ -33,19 +27,16 @@ function addTaskForm() {
   closeButton();
 }
 
-const closeButton = function() {
-  const popout = document.querySelector(".popout-form");
-  const popoutOverlay = document.querySelector(".popout-overlay");
+const closeButton = () => {
   const closeButton = document.querySelector(".close-button");
-  closeButton.addEventListener("click", () => {
-    popoutOverlay.classList.remove("open");
-    popout.innerHTML = "";
-  });
-  
+  closeButton.addEventListener("click", closeOverlay);
 }
 
-function clearHTML() {
-  const popout = document.querySelector(".popout-form");
-
+function closeOverlay() {
+  const popoutOverlay = document.querySelector(".popout-overlay");
+  popoutOverlay.classList.remove("open");
+  // replace with while loop
+  this.closest(".container").innerHTML = "";
 }
+
 
