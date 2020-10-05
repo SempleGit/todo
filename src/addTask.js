@@ -28,15 +28,12 @@ function addTaskForm() {
 }
 
 const intializeButtons = () => {
-    const submitButton = (() => {
+  
       const submitButton = document.querySelector(".submit-button");
       submitButton.addEventListener("click", submit);
-    })();
     
-    const closeButton = (() => {
       const closeButton = document.querySelector(".close-button");
       closeButton.addEventListener("click", closeOverlay);
-    })();
 };
 
 
