@@ -1,11 +1,20 @@
-export { projectList, project, task }
+export { projects, project, task }
 
-let uniqueId = 1000;
 
-const projectList = [];
+const projects = (() => {
+  const projectList = [];
+  const getProjectList = () => projectList;
+  const addProject = (project) => projectList.push(project);
+  return { getProjectList, addProject }
+})();
+
+const uniqueId = ((currentId) => {
+  const nextId = () => currentId++;
+  return { nextId }
+})(1000);
 
 const project = (name) => {
-  const id = uniqueId++;
+  const id = uniqueId.nextId();
   const taskArray = [];
   const getId = () => id;
   const getName = () => name;

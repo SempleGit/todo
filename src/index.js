@@ -1,5 +1,5 @@
-import { addTaskForm } from "./addTask"
-import { projectList, project, task } from "./projects"
+import { addTaskForm, renderTask  } from "./addTask"
+import { projects, project, task } from "./projects"
 
 const tabSelector = document.querySelector(".tab-selector");
 const projectContainter = document.querySelector(".project-container");
@@ -35,37 +35,17 @@ const selectProject = (selected) => {
 
 const renderTab = () => {
   let tabHTML = "";
-  if (projectList.length < 1) {
+  if (projects.getProjectList().length < 1) {
     defaultTab();
   }
-  projectList.forEach(project => {
+
+  projects.getProjectList().forEach(project => {
     console.log(project.getName());
     tabHTML += `<p data-key=${project.getId()} class="selector">${project.getName()}
                     <img data-close="x" class="closeX" src="./images/no16.png"></p>`;
   })
   tabSelector.innerHTML = "";
   tabSelector.insertAdjacentHTML("afterbegin", tabHTML);
-}
-
-// display the tasks for the current project tab.
-const renderTask = (selected = projectList[0].getId()) => {
-  const container = document.querySelector(".project-container");
-  container.innerHTML = "";
-  let taskHTML = "";
-  const indexSelected = projectList.findIndex( element => element.getId() == selected);
-  const tasks = projectList[indexSelected].getTasks();
-  tasks.forEach(task => {
-    taskHTML +=  `<div data-key="${task.getTitle()}" class="todo-container">
-                    <h2 class="todo-header">${task.getTitle()}</h2>
-                    <ul>
-                      <li>Description: ${task.getDescription()}</li>
-                      <li>Start Time: ${task.getStartTime()}</li>
-                      <li>Notes: ${task.getNotes()}</li>
-                    </ul>
-                  </div>`
-  });
-
-  container.insertAdjacentHTML('afterbegin', taskHTML);
 }
 
 const addButton = document.getElementById("add-button");
@@ -89,12 +69,13 @@ const defaultTab = () => {
     myDefault.add(task2);
   // remove when complete
 
-  projectList.push(myDefault);
+  projects.addProject(myDefault);
 }
 
 const closeProject = (selected) => {
-  const removeIndex = projectList.findIndex( (e) => e.getId() == selected);
-  projectList.splice(removeIndex, 1);
+
+  const removeIndex = projects.getProjectList().findIndex( (e) => e.getId() == selected);
+  projects.getProjectList().splice(removeIndex, 1);
 }
 
 renderTab();

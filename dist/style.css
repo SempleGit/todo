@@ -48,23 +48,19 @@ li {
 
 /* Styling for the actual todo items. */
 .todo-container {
-  background-blend-mode: multiply;
-  background-color: rgb(243, 236, 248);
-  border: 2px solid #aafa;
+  /* background-blend-mode: multiply; */
+  background-color: #ffffffdd;
+  border: 2px solid #ccfa;
   border-radius: 5px;
   margin: 2rem;
   min-height: 200px;
-  opacity: .9;
   padding: 1.25rem;
   transition: .5s;
 }
 
 .todo-container:hover {
-  background-color: #e9e8f1dd;
-  box-shadow: 5px 5px 5px #fff;
-  transform: translate(-5px, -5px);
-  transition: all .5s;
-  /* transform: scale(1.05); */
+  box-shadow: 5px 5px 5px #667;
+  transform: translate(-7px, -7px);
 }
 
 .todo-header {
@@ -91,7 +87,7 @@ li {
 }
 
 .selector {
-  background-image: linear-gradient(90deg, #5e0dac88 75% , #FFF101cc);
+  background-image: linear-gradient(90deg, #353436  75% , #5f5e60);
   border: 2px double white;
   border-top-left-radius: 25%;
   border-top-right-radius: 25%;
@@ -104,12 +100,12 @@ li {
 }
 
 .selector:hover {
-  background-image: linear-gradient(90deg, #6b6719f5 75% , #5e0dacff);
+  background-image: linear-gradient(90deg, #5f5e60 75% , #353436);
   cursor: pointer;
 } 
 
 .selected {
-  background-image: linear-gradient(90deg, #6b6719f5 75% , #5e0dacff);
+  background-image: linear-gradient(90deg, #5f5e60 75% , #353436);
   cursor: pointer;
 } 
 
