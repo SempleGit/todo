@@ -41,11 +41,21 @@ export { renderTask, addTaskForm }
     e.target.closest(".container").innerHTML = "";
   }
 
+  const getSelectedTask = () => {
+    if (document.querySelector(".selected")) {
+      const id = document.querySelector(".selected").getAttribute(["data-key"])
+      const index = projects.getProjectList().findIndex( item => item.getId() == id);
+      return index;
+    }   
+    return 0;
+  }
+
   function submit(e) {
     const newTask = task(title.value, description.value, startTime.value, notes.value);
-    projects.getProjectList()[0].add(newTask);
+    const index = getSelectedTask();
+    projects.getProjectList()[index].add(newTask);
     closeOverlay(e);
-    renderTask();
+    renderTask(projects.getProjectList()[index].getId());
   }
 
 

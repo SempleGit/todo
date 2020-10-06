@@ -7,15 +7,13 @@ const projectContainter = document.querySelector(".project-container");
 tabSelector.addEventListener("click", (e) => {
   if (e.target.getAttribute(["data-key"])) {
     const selected = e.target.getAttribute(["data-key"]);
-    renderTab();
-    renderTask(selected);
+    renderTab();  
     selectProject(selected);
     console.log(selected);
   }
 
   if (e.target.getAttribute(["data-close"])) {
     closeProject(e.target.parentElement.getAttribute(["data-key"]));
-    renderTab();
   }
 });
 
@@ -28,6 +26,7 @@ const selectProject = (selected) => {
       selector.classList.remove("selected");
     }
   });
+  renderTask(selected);
 }
 
 
@@ -44,6 +43,7 @@ const renderTab = () => {
     tabHTML += `<p data-key=${project.getId()} class="selector">${project.getName()}
                     <img data-close="x" class="closeX" src="./images/no16.png"></p>`;
   })
+
   tabSelector.innerHTML = "";
   tabSelector.insertAdjacentHTML("afterbegin", tabHTML);
 }
@@ -62,20 +62,15 @@ addButton.addEventListener("click", () => {
 const defaultTab = () => {
   const myDefault = project("My List");
 
-  // to be removed when complete
-    const task1 = task("read", "none", "11:15 am", "n/a");
-    const task2 = task("read2", "none", "11:15 am", "n/a");
-    myDefault.add(task1);
-    myDefault.add(task2);
-  // remove when complete
-
   projects.addProject(myDefault);
 }
 
-const closeProject = (selected) => {
 
+const closeProject = (selected) => {
   const removeIndex = projects.getProjectList().findIndex( (e) => e.getId() == selected);
   projects.getProjectList().splice(removeIndex, 1);
+  renderTab();
+  renderTask(); 
 }
 
 renderTab();
