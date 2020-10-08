@@ -1,6 +1,6 @@
 import { projects, project, task } from "./projects"
 
-export { renderTask, addTaskForm }
+export { render, addTaskForm }
 
   function addTaskForm() {
     const popout = document.querySelector(".popout-form");
@@ -55,16 +55,28 @@ export { renderTask, addTaskForm }
     const index = getSelectedTask();
     projects.getProjectList()[index].add(newTask);
     closeOverlay(e);
-    renderTask(projects.getProjectList()[index].getId());
+    render(projects.getProjectList()[index].getId());
   }
 
+const render = (selection) => {
+  const renderTab = (() => {
+    const tabSelector = document.querySelector(".tab-selector");
+    tabSelector.innerHTML = "";
+    let tabHTML = "";
+    projects.getProjectList().forEach(project => {
+      tabHTML += `<p data-key=${project.getId()} class="selector">${project.getName()}
+                      <img data-close="x" class="closeX" src="./images/no16.png"></p>`;
+    })
+    tabSelector.insertAdjacentHTML("afterbegin", tabHTML);
+  })();
 
-  const renderTask = (selected = projects.getProjectList()[0].getId()) => {
+  const renderTask = ((selected = selection || projects.getProjectList()[0].getId()) => {
     const container = document.querySelector(".project-container");
     container.innerHTML = "";
     let taskHTML = "";
     const indexSelected = projects.getProjectList().findIndex( element => element.getId() == selected);
     const tasks = projects.getProjectList()[indexSelected].getTasks();
+    let index = 0;
     tasks.forEach(task => {
       taskHTML +=  `<div data-key="${task.getTitle()}" class="todo-container">
                       <h2 class="todo-header">${task.getTitle()}</h2>
@@ -73,8 +85,17 @@ export { renderTask, addTaskForm }
                         <li>Start Time: ${task.getStartTime()}</li>
                         <li>Notes: ${task.getNotes()}</li>
                       </ul>
+                      <button class="remove" data-projectIndex=${indexSelected} data-taskindex=${index}>Remove</button>
                     </div>`
+      index++;
     });
-  
     container.insertAdjacentHTML('afterbegin', taskHTML);
-  }
+
+    const removeButtons = document.querySelectorAll(".remove");
+    removeButtons.forEach(button => button.addEventListener("click", () => {
+      projects.getProjectList()[indexSelected].removeTask(button.getAttribute(["data-taskIndex"]));
+      render(selected);
+    }))
+
+  })(selection);
+}

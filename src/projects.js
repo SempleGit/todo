@@ -20,7 +20,11 @@ const project = (name) => {
   const getName = () => name;
   const add = (task) => taskArray.push(task);
   const getTasks = () => taskArray;
-  return { getId, getName, getTasks, add }
+  const removeTask = (index) => {
+    taskArray.splice(index, 1);
+    console.log("remove", index);
+  }
+  return { getId, getName, getTasks, add, removeTask }
 };
 
 const task = (title, description, startTime, notes) => {
