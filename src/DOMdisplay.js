@@ -1,7 +1,6 @@
-import project from "./project";
-import { addTodo, removeTodo } from "./helpers";
+import { projects, addProject, removeProject, addTodo, removeTodo } from "./helpers";
 
-const renderPage = (projects) => {
+const renderPage = () => {
   const content = document.querySelector('#content');
   content.innerHTML = '';
 
@@ -27,12 +26,12 @@ const renderPage = (projects) => {
       
       finishedBtn.onclick = () => {
         todo.setComplete();
-        renderPage(projects);
+        renderPage();
       }
       
       removeBtn.onclick = () => {
         removeTodo(project, todo);
-        renderPage(projects);
+        renderPage();
       }
 
       projectList.append(h3, p, finishedBtn, removeBtn);
@@ -42,18 +41,28 @@ const renderPage = (projects) => {
     btn.textContent = 'Add';
     btn.onclick = () => {
       addTodo(project);
-      renderPage(projects);
+      renderPage();
     }
 
-    projectTab.append(h2, projectList, btn);
+    const removeProjectBtn = document.createElement('button');
+    removeProjectBtn.textContent = 'remove Project';
+    removeProjectBtn.classList.add('remove-project-button')
+    removeProjectBtn.onclick = () => {
+      removeProject(project);
+      renderPage();
+    }
+
+    projectTab.append(h2, projectList, btn, removeProjectBtn);
   }
+
   const addProjectBtn = document.createElement('button');
   addProjectBtn.textContent = 'Add Project';
   addProjectBtn.classList.add('add-project-button')
   addProjectBtn.onclick = () => {
-    projects.push(project('new project'));
-    renderPage(projects);
+    addProject('new project');
+    renderPage();
   }
+
   content.appendChild(addProjectBtn);
 }
 

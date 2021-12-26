@@ -1,9 +1,10 @@
 import todo from "./todo";
 import project from "./project";
 import renderPage from "./DOMdisplay";
+import { projects } from "./helpers";
 import './style.css';
 
-const projects = [];
+
 
 const content = document.createElement('div');
 content.setAttribute('id', 'content');
@@ -19,12 +20,6 @@ projects.push(secondProject);
 const defaultTodo = todo('todo title', 'nothing to do');
 
 defaultProject.addItem(defaultTodo);
-
-const addTodo = (project) => {
-  const newTodo = todo('new todo', 'something else');
-  project.addItem(newTodo);
-  renderPage(projects);
-}
 
 renderPage(projects);
 
