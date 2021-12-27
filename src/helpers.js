@@ -6,6 +6,7 @@ const projects = [];
 const addTodo = (project) => {
   const newTodo = todo('new todo', 'something else');
   project.addItem(newTodo);
+  return newTodo;
 }
 
 const removeTodo = (project, todo) => {
@@ -13,7 +14,9 @@ const removeTodo = (project, todo) => {
 }
 
 const addProject = (title) => {
-  projects.push(project(title));
+  const newProject = project(title);
+  projects.push(newProject);
+  return newProject;
 }
 
 const removeProject = (project) => {
