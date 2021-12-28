@@ -3,8 +3,8 @@ import project from "./project";
 
 const projects = [];
 
-const addTodo = (project) => {
-  const newTodo = todo('new todo', 'something else');
+const addTodo = (project, title = 'New Todo', description = "N/A") => {
+  const newTodo = todo(title, description);
   project.addItem(newTodo);
   return newTodo;
 }
