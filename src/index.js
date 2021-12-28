@@ -10,7 +10,7 @@ content.setAttribute('id', 'content');
 document.body.appendChild(content);
 
 
-const defaultProject = addProject('Project Title 1');
+const defaultProject = addProject('My List');
 const defaultTodo = todo('todo title', 'nothing to do');
 
 defaultProject.addItem(defaultTodo);
