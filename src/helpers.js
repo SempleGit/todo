@@ -13,7 +13,7 @@ const removeTodo = (project, todo) => {
   project.removeItem(todo);
 }
 
-const addProject = (title) => {
+const addProject = (title = 'New Project') => {
   const newProject = project(title);
   projects.push(newProject);
   return newProject;

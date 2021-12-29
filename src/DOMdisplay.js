@@ -19,33 +19,54 @@ const modalTemplate = (...element) => {
 
 const addTodoModal = (project) => {
 
-  const pText = document.createElement('p');
-  pText.textContent = "modal text";
+  const form = document.createElement('form');
+  const labelT = document.createElement('label');
+  labelT.textContent = 'Title';
+  const inputTitle = document.createElement('input');
+  inputTitle.name = 'title';
 
+  labelT.appendChild(inputTitle);
+
+  const labelD = document.createElement('label');
+  labelD.textContent = 'Description';
+  const inputDescription = document.createElement('input');
+  inputDescription.name = 'description';
+
+  labelD.appendChild(inputDescription);
+  
+  
   const addButton = document.createElement('button');
   addButton.textContent = 'Add Todo';
-  addButton.onclick = () => {
-    addTodo(project);
+  addButton.onclick = (e) => {
+    e.preventDefault()
+    addTodo(project, form.title.value, form.description.value);
     renderPage();
   }
   
-  modalTemplate(pText, addButton);
-  
+  form.append(labelT, labelD, addButton);
+  modalTemplate(form);
 }
 
 const addProjectModal = () => {
-
-  const pText = document.createElement('p');
-  pText.textContent = "modal text";
-
+  
+  const form = document.createElement('form');
+  const labelT = document.createElement('label');
+  labelT.textContent = 'Title';
+  const inputTitle = document.createElement('input');
+  inputTitle.name = 'title';
+  
+  labelT.appendChild(inputTitle);
+  
   const addButton = document.createElement('button');
   addButton.textContent = 'Add Project';
-  addButton.onclick = () => {
-    addProject('new project');
+  addButton.onclick = (e) => {
+    e.preventDefault();
+    addProject(form.title.value);
     renderPage();
   }
   
-  modalTemplate(pText, addButton);
+  form.append(labelT, addButton);
+  modalTemplate(form);
 
 }
 

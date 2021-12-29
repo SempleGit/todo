@@ -6,7 +6,7 @@ const project = (title) => {
     list.splice(list.indexOf(item), 1);
   };
   const getList = () => list;
-  return { getTitle, getList, addItem,removeItem };
+  return { getTitle, getList, addItem, removeItem };
 }
 
 export default project;
