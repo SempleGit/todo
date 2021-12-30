@@ -1,6 +1,6 @@
 import todo from "./todo";
 import renderPage from "./DOMdisplay";
-import { projects, addProject } from "./helpers";
+import { projects, addProject, addTodo } from "./helpers";
 import './style.css';
 
 
@@ -11,9 +11,7 @@ document.body.appendChild(content);
 
 
 const defaultProject = addProject('My List');
-const defaultTodo = todo('todo title', 'nothing to do');
-
-defaultProject.addItem(defaultTodo);
+const defaultTodo = addTodo(defaultProject, 'todo title', 'nothing to do');
 
 renderPage(projects);
 

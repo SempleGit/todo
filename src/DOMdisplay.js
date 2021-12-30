@@ -94,7 +94,7 @@ const renderPage = () => {
 
       h3.textContent = todo.getTitle();
       p.textContent = `${todo.getDescription()}`; 
-      finishedBtn.textContent = `${todo.getComplete() ? 'Complete' : 'Incomplete'}`;
+      finishedBtn.textContent = `${todo.getComplete() ? 'Complete' : 'Pending'}`;
       removeBtn.textContent = 'Remove';
       
       finishedBtn.onclick = () => {
