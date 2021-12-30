@@ -1,15 +1,17 @@
 import todo from "./todo";
 import project from "./project";
 
-let projects = JSON.parse(localStorage.getItem('projects')) || [];
+let projects = [];
+
+
 
 const populateStorage = () => {
-  console.log(projects[0].getTitle());
-  localStorage.setItem('projects', JSON.stringify(projects));
+  window.localStorage.setItem('projects', JSON.stringify(projects));
 };
 
 const setProjects = () => {
-  projects = JSON.parse(localStorage.getItem('projects'));
+  const storedProjects = JSON.parse(window.localStorage.getItem('projects'));
+  projects = storedProjects.map( project => console.log(project) );
 }
 
 const addTodo = (project, title = 'New Todo', description = "N/A") => {
@@ -35,5 +37,8 @@ const removeProject = (project) => {
   projects.splice(projects.indexOf(project), 1);
   populateStorage();
 }
+
+const defaultProject = addProject('My List');
+// const defaultTodo = addTodo(defaultProject, 'todo title', 'nothing to do');
 
 export { projects, addTodo, removeTodo, addProject, removeProject };

@@ -10,8 +10,6 @@ content.setAttribute('id', 'content');
 document.body.appendChild(content);
 
 
-const defaultProject = addProject('My List');
-const defaultTodo = addTodo(defaultProject, 'todo title', 'nothing to do');
 
 renderPage(projects);
 
