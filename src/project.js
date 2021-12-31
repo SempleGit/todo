@@ -1,5 +1,4 @@
-const project = (title) => {
-  const list = [];
+const project = (title, list = []) => {
   const getTitle = () => title;
   const addItem = (item) => list.push(item);
   const removeItem = (item) => {

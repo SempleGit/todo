@@ -24,10 +24,14 @@ const populateStorage = () => {
 
 const setProjects = () => {
   const storedProjects = JSON.parse(window.localStorage.getItem('projects'));
-  projects = storedProjects.map( currentProject => {
-    const workingProject = project(currentProject.title);
-    return workingProject;
-  } );
+  projects = storedProjects.map( ({title, list}) => (
+          project(title, list.map( ({ title, description, complete }) => (
+            todo(title, description, complete)
+          )
+        )
+      )
+    )
+  );
 }
 
 const addTodo = (project, title = 'New Todo', description = "N/A") => {
@@ -54,7 +58,11 @@ const removeProject = (project) => {
   populateStorage();
 }
 
-// const defaultProject = addProject('My List');
-// const defaultTodo = addTodo(defaultProject, 'todo title', 'nothing to do');
+if(!localStorage.getItem('projects')) {
+  const defaultProject = addProject('My List');
+  const defaultTodo = addTodo(defaultProject, 'todo title', 'nothing to do');
+} else {
+  setProjects();
+}
 
 export { projects, addTodo, removeTodo, addProject, removeProject };
