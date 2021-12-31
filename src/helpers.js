@@ -3,15 +3,31 @@ import project from "./project";
 
 let projects = [];
 
-
-
 const populateStorage = () => {
-  window.localStorage.setItem('projects', JSON.stringify(projects));
-};
+  console.log(JSON.stringify(projects));
+  const projectStrings = projects.map( project => (
+      {
+      title: project.getTitle(),
+      list: project.getList().map( item => (
+            {
+              title: item.getTitle(), 
+              description: item.getDescription(), 
+              complete: item.getComplete()
+            }
+          )
+        )
+      }
+    )
+  );
+  window.localStorage.setItem('projects', JSON.stringify(projectStrings));
+}
 
 const setProjects = () => {
   const storedProjects = JSON.parse(window.localStorage.getItem('projects'));
-  projects = storedProjects.map( project => console.log(project) );
+  projects = storedProjects.map( currentProject => {
+    const workingProject = project(currentProject.title);
+    return workingProject;
+  } );
 }
 
 const addTodo = (project, title = 'New Todo', description = "N/A") => {
@@ -38,7 +54,7 @@ const removeProject = (project) => {
   populateStorage();
 }
 
-const defaultProject = addProject('My List');
+// const defaultProject = addProject('My List');
 // const defaultTodo = addTodo(defaultProject, 'todo title', 'nothing to do');
 
 export { projects, addTodo, removeTodo, addProject, removeProject };
